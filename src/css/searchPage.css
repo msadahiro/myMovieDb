@@ -1,0 +1,93 @@
+body{
+	background-color: gray;
+}
+.Application{
+	width:80%;
+	margin:0 auto;
+}
+.Application--Header-Left {
+	width: 70%;
+	height: 100%;
+	display: inline-block;
+	vertical-align: top;
+	text-align: center;
+	padding-top:4%;
+}
+.Application--Header-Left > p{
+	margin: 0 4%;
+}
+.backToIndexButton{
+	margin-top:2%;
+	padding:2% 8%;
+	border:none;
+	background-color:orange;
+	font-size:24px;
+	cursor: pointer;
+}
+.Application--Header-Right {
+	width: 29%;
+	height: 100%;
+	display: inline-block;
+}
+.Application--Header-Right img {
+	height: 100%;
+	width: 100%;
+}
+.Application-Body{
+	margin-top:4%;
+}
+.searchBar--Input{
+	width:100%;
+	text-align: center;
+}
+.searchBar--Input > input{
+	width:90%;
+	padding:1%;
+	margin:0 auto;
+	font-size: 28px;
+}
+.movieResults{
+	padding-top:4%;
+}
+.movieResult--Row{
+	margin:0 auto;
+	width:80%;
+	display: block;
+	border:1px solid black;
+}
+.movieResult--Poster-Element{
+	width:150px;
+	height:200px;
+	display:inline-block;
+	margin:1%;
+}
+.movieResult--Overview{
+	display:inline-block;
+	vertical-align: top;
+	margin:1%;
+	width:80%;
+}
+.myStars{
+	direction:rtl;
+	float:left;
+}
+.myStars input{
+	display:none;
+}
+.myStars input:checked ~ label,
+.myStars:not(:checked) label:hover,
+.myStars:not(:checked) label:hover ~ label{
+	color:gold;
+	cursor: pointer;
+}
+
+.myStars input:checked+label:hover,
+.myStars input:checked~label:hover,
+.myStars input:checked~label:hover~label,
+.myStars label:hover~input:checked~label {
+	color: red;
+}
+.currentRating{
+	display: inline-block;
+	color:white;
+}

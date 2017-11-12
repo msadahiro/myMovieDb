@@ -1,0 +1,44 @@
+body{
+	background-color:gray
+}
+.Application{
+	width:80%;
+	margin:0 auto;
+}
+.Application--Header-Left {
+	width: 70%;
+	height: 100%;
+	display: inline-block;
+	vertical-align: top;
+	text-align: center;
+	padding-top:4%;
+}
+.Application--Header-Left > p{
+	margin: 0 4%;
+}
+.searchButton{
+	margin-top:2%;
+	padding:2% 8%;
+	border:none;
+	background-color:orange;
+	font-size:24px;
+	cursor: pointer;
+}
+.Application--Header-Right {
+	width: 29%;
+	height: 100%;
+	display: inline-block;
+}
+
+.Application--Header-Right img {
+	height: 100%;
+	width: 100%;
+}
+
+.moviesRated--Poster-Element{
+	width:150px;
+	height:200px;
+	display:inline-block;
+	margin:0 1% 1% 1%;
+	position: relative
+}

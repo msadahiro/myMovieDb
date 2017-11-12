@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Search Page</title>
+	<link rel="stylesheet" type="" href="./../src/css/searchPage.css">
+</head>
+
+<body>
+	<div class="Application">
+		<header>
+			<section class="Application--Header">
+				<div class="Application--Header-Left">
+					<h1>Search For A Movie</h1>
+					<p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature
+						from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia,
+						looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites
+						of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and
+						1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is
+						a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum
+						dolor sit amet..", comes from a line in section 1.10.32.</p>
+					<a href="./index.html">
+						<button class="backToIndexButton"> &#8678; Go Back</button>
+					</a>
+				</div>
+				<div class="Application--Header-Right">
+					<img src="./../src/images/movie2.svg" alt="movie">
+				</div>
+
+			</section>
+		</header>
+		<main class="Application-Body">
+			<div id="searchPage">
+				<div class="searchBar--Input">
+					<input type="text" id="searchMovieName" value="" placeholder="search movie">
+				</div>
+				<div id="movieResults" class="movieResults">
+
+				</div>
+			</div>
+		</main>
+
+	</div>
+	<script src="https://www.gstatic.com/firebasejs/4.6.1/firebase.js"></script>
+	<script>
+		// Initialize Firebase
+		const config = {
+			apiKey: "AIzaSyDKbeDZSUjklqkYtf2pF8l4TxAGXbYfRN0",
+			authDomain: "myownmoviedb.firebaseapp.com",
+			databaseURL: "https://myownmoviedb.firebaseio.com",
+			projectId: "myownmoviedb",
+			storageBucket: "",
+			messagingSenderId: "24930183673"
+		};
+		firebase.initializeApp(config);
+		const database = firebase.database();
+	</script>
+	<script src="./../src/js/searchPage.js"></script>
+</body>
+
+</html>
