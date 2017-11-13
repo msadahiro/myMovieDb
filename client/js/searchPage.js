@@ -1,3 +1,4 @@
+console.log('getting called')
 const searchBar = document.getElementById('searchMovieName')
 const movieResults = document.getElementById('movieResults')
 
