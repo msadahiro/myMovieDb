@@ -3,7 +3,7 @@ var app = express()
 var bodyParser = require('body-parser')
 var path = require('path')
 
-app.use(express.static(path.join(__dirname, 'client')))
+app.use(express.static(path.join(__dirname, 'public')))
 app.use(express.static(path.join(__dirname, 'node_modules')))
 app.use(bodyParser.json())
 
