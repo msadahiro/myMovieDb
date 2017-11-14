@@ -1,6 +1,5 @@
 const moviesRated = document.getElementById('moviesRated')
 const moviesRecommended = document.getElementById('moviesRecommended')
-const CONFIG = "./../config/apikey.json";
 
 const getRatedMovies = () => {
 	return new Promise((resolve, reject) => {
@@ -14,34 +13,31 @@ const getRatedMovies = () => {
 	})
 }
 async function getMovieRecommendations(input) {
-	const API_KEY = await getAPIKEY();
 	let genreId;
-	let results = []
 	let movieId = []
 	Object.keys(input).forEach(key => {
 		genreId = input[key].genreId
 		movieId.push(input[key].id)
-		results.push(populateMovieRecommendations(`https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_genres=${genreId}`))
 	})
+	let results = await populateMovieRecommendations(input)
 	Promise.all(results)
 		.then((results) => getUniqueResults(results, movieId))
 		.then(renderMovieRecommendations)
+}
 
-}
-const getAPIKEY = () => {
-	return fetch(CONFIG, { method: 'GET' })
-		.then(toJson)
-		.then(returnAPIKEY)
-		.catch(errorHandling)
-}
-const returnAPIKEY = input => {
-	return input.API_KEY;
-}
-const populateMovieRecommendations = (input) => {
-	return fetch(input, { method: 'GET' })
-		.then(toJson)
-		.then(spreadResults)
-		.catch(errorHandling)
+const populateMovieRecommendations = (data) => {
+	const url = "http://localhost:8000/sendMovieData"
+	return fetch(url, {
+		method: 'POST',
+		headers: {
+			'Accept': 'application/json',
+			'Content-Type': 'application/json'
+		},
+		body: JSON.stringify(data)
+	})
+		.then(result => result.json())
+		.then(input => input)
+
 }
 
 const toJson = (response) => {

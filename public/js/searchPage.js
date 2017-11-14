@@ -1,32 +1,31 @@
-console.log('getting called')
+
 const searchBar = document.getElementById('searchMovieName')
 const movieResults = document.getElementById('movieResults')
 
-let searchedTerm = ""
-const CONFIG = "./../config/apikey.json";
 
 const handleSearchChange = input => {
-	searchedTerm = input.target.value;
-	getMovies(searchedTerm)
+	let jsonData = {}
+	if (!jsonData[input.target.value]) {
+		jsonData.searchedMovie = input.target.value;
+	}
+	getMovies(jsonData)
 }
-async function getMovies(input) {
-	const route = await getRoutes();
-	const APIKEY = await getAPIKey();
-	const query = route + APIKEY + "&query=" + input;
-	populateSearchResults(query);
-}
-const getRoutes = () => {
-	return fetch(CONFIG)
+const getMovies = (input) => {
+	const url = "http://localhost:8000/searchMovie"
+	fetch(url, {
+		method: 'POST',
+		headers: {
+			'Accept': 'application/json',
+			'Content-Type': 'application/json'
+		},
+		body: JSON.stringify(input)
+	})
 		.then(toJson)
-		.then(returnEndpoint)
-		.catch(errorHandling);
-};
-const getAPIKey = () => {
-	return fetch(CONFIG)
-		.then(toJson)
-		.then(getAPIKEY)
+		.then(spreadResults)
+		.then(populatePageWithResults)
 		.catch(errorHandling)
-};
+}
+
 
 const toJson = (response) => {
 	return response.json();
@@ -139,7 +138,6 @@ const createStarLabel = () => {
 	const label = document.createElement('label')
 	return label;
 }
-
 
 
 searchBar.addEventListener('keyup', handleSearchChange);
