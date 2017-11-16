@@ -26,10 +26,12 @@ async function getMovieRecommendations(input) {
 }
 
 const populateMovieRecommendations = (data) => {
-	const url = "http://localhost:8000/sendMovieData"
+	const url = "/sendMovieData"
 	return fetch(url, {
 		method: 'POST',
 		headers: {
+			'Access-Control-Allow-Origin': '*',
+			'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept',
 			'Accept': 'application/json',
 			'Content-Type': 'application/json'
 		},
@@ -37,7 +39,6 @@ const populateMovieRecommendations = (data) => {
 	})
 		.then(result => result.json())
 		.then(input => input)
-
 }
 
 const toJson = (response) => {

@@ -11,10 +11,12 @@ const handleSearchChange = input => {
 	getMovies(jsonData)
 }
 const getMovies = (input) => {
-	const url = "http://localhost:8000/searchMovie"
+	const url = "/searchMovie"
 	fetch(url, {
 		method: 'POST',
 		headers: {
+			'Access-Control-Allow-Origin': '*',
+			'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept',
 			'Accept': 'application/json',
 			'Content-Type': 'application/json'
 		},
