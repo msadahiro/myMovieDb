@@ -1,6 +1,6 @@
 const moviesRated = document.getElementById('moviesRated')
 const moviesRecommended = document.getElementById('moviesRecommended')
-
+const carouselUL = document.getElementById("carousel-container-ul")
 const getRatedMovies = () => {
 	return new Promise((resolve, reject) => {
 		database.ref('/movies').on('value', (snapshot) => {
@@ -68,12 +68,13 @@ const getUniqueResults = (results, movieId) => {
 	return filterOutRatedMovies;
 }
 const renderMovieRecommendations = (input) => {
-	let recommendedMovieCount = 14;
+	let recommendedMovieCount = 12;
 	while (recommendedMovieCount > 0) {
 		const randomMovie = input[Math.floor(Math.random() * input.length)]
 		Object.keys(randomMovie).map(key => {
 			if (key === 'poster_path') {
 				const imageNode = createMovieImage()
+				imageNode.className = "moviesRated--Poster-Element"
 				imageNode.setAttribute("src", `https://image.tmdb.org/t/p/w500/${randomMovie[key]}`)
 				moviesRecommended.appendChild(imageNode)
 			}
@@ -89,6 +90,7 @@ const renderMoviesRated = (input) => {
 		moviesRated.innerHTML = ""
 		Object.keys(input).map(key => {
 			const imageNode = createMovieImage()
+			imageNode.className = "moviesRated--Poster-Element"
 			imageNode.setAttribute("src", input[key].imageURL)
 			moviesRated.appendChild(imageNode)
 		})
@@ -100,8 +102,71 @@ const createMovieDiv = () => {
 }
 const createMovieImage = () => {
 	const imageNode = document.createElement('img')
-	imageNode.className = "moviesRated--Poster-Element"
+
 	return imageNode;
+}
+
+const loadBackdrop = () => {
+	const url = "/getBackDrop"
+	fetch(url, {
+		method: 'GET',
+		headers: {
+			'Access-Control-Allow-Origin': '*',
+			'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept',
+			'Accept': 'application/json',
+			'Content-Type': 'application/json'
+		},
+	})
+		.then(result => result.json())
+		.then(spreadResults)
+		.then(renderBackDrop)
+		.catch(errorHandling)
+}
+const renderBackDrop = (input) => {
+	if (input) {
+		input.slice(0, 1).map(element => {
+			const backdropDiv = createMovieDiv()
+			const imageNode = createMovieImage()
+			imageNode.className = 'slide showing';
+			imageNode.setAttribute("src", `https://image.tmdb.org/t/p/w500/${element.backdrop_path}`)
+			const movieTitle = document.createElement('h2')
+			movieTitle.innerHTML = element.title
+			movieTitle.className = 'title showing movieTitle';
+			backdropDiv.appendChild(imageNode)
+			backdropDiv.appendChild(movieTitle)
+			const li = document.createElement('li')
+			li.appendChild(backdropDiv)
+			carouselUL.appendChild(li)
+		})
+		input.slice(1).map(element => {
+			const backdropDiv = createMovieDiv()
+			const imageNode = createMovieImage()
+			imageNode.className = 'slide';
+			imageNode.setAttribute("src", `https://image.tmdb.org/t/p/w500/${element.backdrop_path}`)
+			const movieTitle = document.createElement('h2')
+			movieTitle.innerHTML = element.title
+			movieTitle.className = 'title';
+			backdropDiv.appendChild(imageNode)
+			backdropDiv.appendChild(movieTitle)
+			const li = document.createElement('li')
+			li.appendChild(backdropDiv)
+			carouselUL.appendChild(li)
+		})
+
+		const slides = document.querySelectorAll("#carousel-container-ul .slide");
+		const titles = document.querySelectorAll("#carousel-container-ul .title")
+		let currentSlide = 0;
+		let currentTitle = 0;
+		const nextSlide = () => {
+			slides[currentSlide].className = 'slide';
+			titles[currentTitle].className = 'title';
+			currentSlide = (currentSlide + 2) % slides.length;
+			currentTitle = (currentTitle + 2) % titles.length;
+			slides[currentSlide].className = 'slide showing'
+			titles[currentTitle].className = 'slide showing movieTitle'
+		}
+		const slideInterval = setInterval(nextSlide, 4000)
+	}
 }
 
 const init = (() => {
@@ -109,4 +174,5 @@ const init = (() => {
 		getMovieRecommendations(ratedMoviesResults)
 		renderMoviesRated(ratedMoviesResults)
 	})
+	loadBackdrop();
 })()

@@ -7,4 +7,7 @@ module.exports = function (app) {
 	app.post("/searchMovie", function (req, res) {
 		movie.searchMovie(req, res)
 	})
+	app.get("/getBackDrop", function (req, res) {
+		movie.getBackDrop(req, res)
+	})
 };

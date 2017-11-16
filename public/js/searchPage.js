@@ -57,7 +57,6 @@ const populatePageWithResults = input => {
 	if (input) {
 		movieResults.innerHTML = "";
 		input.map(element => {
-			// console.log(element)
 			const rowNode = createMovieResultDiv()
 			rowNode.className = "movieResult--Row"
 			const imageNode = createMovieResultImage()

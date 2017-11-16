@@ -1,54 +1,69 @@
 body{
-	background-color: gray;
+	margin:0;
+	padding:0;
+	background-color:#F1F0F1
 }
-.Application{
-	width:80%;
-	margin:0 auto;
+.Application-Body{
+	margin:0;
+	padding-bottom: 4%;
 }
-.Application--Header-Left {
-	width: 70%;
+.SearchPage--Header {
+	width: 100%;
 	height: 100%;
 	display: inline-block;
 	vertical-align: top;
+	background-color:#221815
+}
+
+.SearchPage--Header img {
+	height: 50px;
+	width: 30%;
+	display:inline-block;
+}
+.SearchPage--Header p {
 	text-align: center;
-	padding-top:4%;
-}
-.Application--Header-Left > p{
-	margin: 0 4%;
-}
-.backToIndexButton{
+	margin:0;
 	margin-top:2%;
-	padding:2% 8%;
-	border:none;
-	background-color:orange;
-	font-size:24px;
-	cursor: pointer;
-}
-.Application--Header-Right {
-	width: 29%;
-	height: 100%;
+	margin-left:10%;
+	vertical-align: top;
+	color:white;
 	display: inline-block;
-}
-.Application--Header-Right img {
-	height: 100%;
-	width: 100%;
-}
-.Application-Body{
-	margin-top:4%;
 }
 .searchBar--Input{
 	width:100%;
 	text-align: center;
+	padding:4% 0 ;
+	background-color:#484158
 }
 .searchBar--Input > input{
-	width:90%;
+	width:70%;
 	padding:1%;
 	margin:0 auto;
 	font-size: 28px;
+	border:none;
+	text-align: center;
+	border-bottom:1px solid black;
+	background:transparent;
+	color:white;
 }
+::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+	color: pink;
+  }
+  ::-moz-placeholder { /* Firefox 19+ */
+	color: pink;
+  }
+  :-ms-input-placeholder { /* IE 10+ */
+	color: pink;
+  }
+  :-moz-placeholder { /* Firefox 18- */
+	color: pink;
+  }
 .movieResults{
 	padding-top:4%;
+
+
 }
+
 .movieResult--Row{
 	margin:0 auto;
 	width:80%;

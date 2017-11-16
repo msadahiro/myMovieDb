@@ -10,40 +10,26 @@
 </head>
 
 <body>
-	<div class="Application">
-		<header>
-			<section class="Application--Header">
-				<div class="Application--Header-Left">
-					<h1>Search For A Movie</h1>
-					<p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature
-						from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia,
-						looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites
-						of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and
-						1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is
-						a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum
-						dolor sit amet..", comes from a line in section 1.10.32.</p>
-					<a href="./index.html">
-						<button class="backToIndexButton"> &#8678; Go Back</button>
-					</a>
-				</div>
-				<div class="Application--Header-Right">
-					<img src="./images/movie2.svg" alt="movie">
-				</div>
+	<header class="SearchPage--Header">
+		<a href="./index.html">
+			<img src="./images/movie2.svg" alt="movie">
+		</a>
 
-			</section>
-		</header>
-		<main class="Application-Body">
-			<div id="searchPage">
-				<div class="searchBar--Input">
-					<input type="text" id="searchMovieName" value="" placeholder="search movie">
-				</div>
-				<div id="movieResults" class="movieResults">
+		<p>Search page for movie recommendations application</p>
 
-				</div>
+	</header>
+
+	<main class="Application-Body">
+		<div id="searchPage">
+			<div class="searchBar--Input">
+				<input type="text" id="searchMovieName" value="" placeholder="search movie">
 			</div>
-		</main>
+			<div id="movieResults" class="movieResults">
 
-	</div>
+			</div>
+		</div>
+	</main>
+
 	<script src="https://www.gstatic.com/firebasejs/4.6.1/firebase.js"></script>
 	<script>
 		// Initialize Firebase
