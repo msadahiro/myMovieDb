@@ -114,6 +114,7 @@ const createStarRating = (movieTitle, genre, movieId, date) => {
 		starLabel.htmlFor = `${movieTitle}star${count}`
 		starLabel.innerHTML = `&starf;`
 		starLabel.onclick = function () {
+			console.log(date)
 			const ratingObj = {}
 			let movieName = this.parentNode.parentNode.firstChild.innerHTML
 			let rating = this.previousElementSibling.value
@@ -124,10 +125,10 @@ const createStarRating = (movieTitle, genre, movieId, date) => {
 			ratingObj.imageURL = this.parentNode.parentNode.parentNode.firstChild.src
 			ratingObj.genreId = randomGenreNumber
 
-			if (!database.ref(`date/movies`).child(`${ratingObj.id}`)) {
-				database.ref(`date/movies`).child(`${ratingObj.id}`).push(ratingObj)
+			if (!database.ref(`${date}/movies`).child(`${ratingObj.id}`)) {
+				database.ref(`${date}/movies`).child(`${ratingObj.id}`).push(ratingObj)
 			}
-			database.ref(`date/movies`).child(`${ratingObj.id}`).update(ratingObj)
+			database.ref(`${date}/movies`).child(`${ratingObj.id}`).update(ratingObj)
 		}
 		starField.appendChild(starLabel)
 		count--
