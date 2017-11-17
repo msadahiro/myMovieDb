@@ -57,6 +57,10 @@ const populatePageWithResults = input => {
 	if (input) {
 		movieResults.innerHTML = "";
 		input.map(element => {
+			const year = new Date().getFullYear();
+			const month = new Date().getMonth() + 1;
+			const day = new Date().getDate();
+			const date = `${month}${day}${year}`
 			const rowNode = createMovieResultDiv()
 			rowNode.className = "movieResult--Row"
 			const imageNode = createMovieResultImage()
@@ -68,7 +72,7 @@ const populatePageWithResults = input => {
 			titleNode.innerHTML = element.title
 			const descriptionNode = createMovieResultDescription()
 			descriptionNode.innerHTML = element.overview;
-			const starRatingNode = createStarRating(element.title, element.genre_ids, element.id)
+			const starRatingNode = createStarRating(element.title, element.genre_ids, element.id, date)
 			movieResults.appendChild(rowNode);
 			rowNode.appendChild(imageNode);
 			rowNode.appendChild(movieInfoDiv);
@@ -95,7 +99,7 @@ const createMovieResultDescription = () => {
 	const descriptionNode = document.createElement('p')
 	return descriptionNode;
 }
-const createStarRating = (movieTitle, genre, movieId) => {
+const createStarRating = (movieTitle, genre, movieId, date) => {
 	const starField = createMovieResultDiv()
 	starField.className = "myStars"
 	let count = 10;
@@ -119,10 +123,11 @@ const createStarRating = (movieTitle, genre, movieId) => {
 			ratingObj.rating = rating;
 			ratingObj.imageURL = this.parentNode.parentNode.parentNode.firstChild.src
 			ratingObj.genreId = randomGenreNumber
-			if (!database.ref(`movies`).child(`${ratingObj.id}`)) {
-				database.ref(`movies`).child(`${ratingObj.id}`).push(ratingObj)
+
+			if (!database.ref(`date/movies`).child(`${ratingObj.id}`)) {
+				database.ref(`date/movies`).child(`${ratingObj.id}`).push(ratingObj)
 			}
-			database.ref(`movies`).child(`${ratingObj.id}`).update(ratingObj)
+			database.ref(`date/movies`).child(`${ratingObj.id}`).update(ratingObj)
 		}
 		starField.appendChild(starLabel)
 		count--

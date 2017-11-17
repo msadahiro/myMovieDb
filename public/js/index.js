@@ -2,8 +2,13 @@ const moviesRated = document.getElementById('moviesRated')
 const moviesRecommended = document.getElementById('moviesRecommended')
 const carouselUL = document.getElementById("carousel-container-ul")
 const getRatedMovies = () => {
+
 	return new Promise((resolve, reject) => {
-		database.ref('/movies').on('value', (snapshot) => {
+		const year = new Date().getFullYear();
+		const month = new Date().getMonth() + 1;
+		const day = new Date().getDate();
+		const date = `${month}${day}${year}`
+		database.ref(`${date}/movies`).on('value', (snapshot) => {
 			if (snapshot.val()) {
 				let ratedMovies = snapshot.val()
 				resolve(ratedMovies)
