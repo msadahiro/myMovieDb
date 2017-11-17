@@ -34,6 +34,7 @@ body{
 }
 
 .moviesRated--Poster-Element{
+
 	width:150px;
 	height:200px;
 	display:inline-block;
@@ -41,22 +42,24 @@ body{
 	position: relative;
 	box-shadow:10px 10px 5px #888888;
 }
+
 #carousel-container-ul {
     position: relative;
     height: 400px;
     padding: 0px;
     margin: 0px;
-    list-style-type: none;
+	list-style-type: none;
+	background-color: black;
 }
 .slide {
     position: absolute;
-    left: 0px;
-    top: 0px;
-    width: 100%;
-    height: 100%;
+    left: 30%;
+    top: 0;
+	width: 60%;
+	height:100%;
     opacity: 0;
     z-index: 1;
-
+	background-color:black;
     -webkit-transition: opacity 1s;
     -moz-transition: opacity 1s;
     -o-transition: opacity 1s;
@@ -79,14 +82,9 @@ body{
 	position: absolute;
 	top:250px;
 	left:50px;
-	width:40%;
+	width:20%;
 	height:10%;
 	opacity: 1;
 	z-index:3;
 	color:white;
-}
-#moviesRecommended{
-	text-align: justify;
-	margin-left: auto; 
-    margin-right: auto;
 }
