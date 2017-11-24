@@ -170,7 +170,7 @@ const renderBackDrop = (input) => {
 			slides[currentSlide].className = 'slide showing'
 			titles[currentTitle].className = 'slide showing movieTitle'
 		}
-		const slideInterval = setInterval(nextSlide, 4000)
+		const slideInterval = setInterval(nextSlide, 2000)
 	}
 }
 

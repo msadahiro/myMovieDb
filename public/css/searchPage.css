@@ -1,3 +1,6 @@
+*{
+	font-family: Sans-Serif;
+}
 body{
 	margin:0;
 	padding:0;
@@ -20,32 +23,36 @@ body{
 	width: 30%;
 	display:inline-block;
 }
-.SearchPage--Header p {
-	text-align: center;
-	margin:0;
-	margin-top:2%;
-	margin-left:10%;
-	vertical-align: top;
-	color:white;
-	display: inline-block;
-}
+
 .searchBar--Input{
 	width:100%;
 	text-align: center;
 	padding:4% 0 ;
-	background-color:#484158
+	background-color:#484158;
+	overflow:hidden;
+}
+.searchBar--Input > h2{
+	margin-top:0;
+	font-size:24px;
+	font-weight:300;
+	color:white;
 }
 .searchBar--Input > input{
 	width:70%;
 	padding:1%;
 	margin:0 auto;
 	font-size: 28px;
-	border:none;
-	text-align: center;
-	border-bottom:1px solid black;
+	border:1px solid #eee;
+	text-align: left;
 	background:transparent;
 	color:white;
 }
+.searchBar--Input > span {
+	position: relative;
+	left:70%;
+	font-size:28px;
+}
+
 ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
 	color: pink;
   }
@@ -60,15 +67,18 @@ body{
   }
 .movieResults{
 	padding-top:4%;
-
-
 }
 
 .movieResult--Row{
 	margin:0 auto;
 	width:80%;
 	display: block;
-	border:1px solid black;
+	border-bottom:1px solid #e6e6e6;
+	border-top:1px solid #e6e6e6;
+}
+.movieResult--Row:hover{
+	border-bottom: 1px solid #484158;
+	border-top: 1px solid #484158;
 }
 .movieResult--Poster-Element{
 	width:150px;
@@ -85,6 +95,7 @@ body{
 .myStars{
 	direction:rtl;
 	float:left;
+	font-size:20px;
 }
 .myStars input{
 	display:none;
