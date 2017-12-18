@@ -73,32 +73,62 @@ const getUniqueResults = (results, movieId) => {
 	return filterOutRatedMovies;
 }
 const renderMovieRecommendations = (input) => {
-	let recommendedMovieCount = 12;
-	while (recommendedMovieCount > 0) {
-		const randomMovie = input[Math.floor(Math.random() * input.length)]
-		Object.keys(randomMovie).map(key => {
-			if (key === 'poster_path') {
-				const imageNode = createMovieImage()
-				imageNode.className = "moviesRated--Poster-Element"
-				imageNode.setAttribute("src", `https://image.tmdb.org/t/p/w500/${randomMovie[key]}`)
-				moviesRecommended.appendChild(imageNode)
-			}
-		})
-		input = input.filter(obj => {
-			return obj.id !== randomMovie.id
-		})
-		recommendedMovieCount--;
+	if (!input.length) {
+		const newDiv = document.createElement('div');
+		newDiv.className = 'empty-movie-list';
+		newDiv.innerHTML = "<p>You have not recommended any movies yet. Search for a movie to get started</p>"
+		const newLink = document.createElement('a');
+		newLink.href = "./searchPage.html"
+		const newButton = document.createElement('button');
+		newButton.className = 'empty-movie-list-button'
+		newButton.innerHTML = "Search for a movie"
+		newLink.appendChild(newButton);
+		newDiv.appendChild(newLink);
+		moviesRecommended.appendChild(newDiv);
+	}
+	else {
+		let recommendedMovieCount = 12;
+		while (recommendedMovieCount > 0) {
+			const randomMovie = input[Math.floor(Math.random() * input.length)]
+			Object.keys(randomMovie).map(key => {
+				if (key === 'poster_path') {
+					const imageNode = createMovieImage()
+					imageNode.className = "moviesRated--Poster-Element"
+					imageNode.setAttribute("src", `https://image.tmdb.org/t/p/w500/${randomMovie[key]}`)
+					moviesRecommended.appendChild(imageNode)
+				}
+			})
+			input = input.filter(obj => {
+				return obj.id !== randomMovie.id
+			})
+			recommendedMovieCount--;
+		}
 	}
 }
 const renderMoviesRated = (input) => {
-	if (input) {
-		moviesRated.innerHTML = ""
-		Object.keys(input).map(key => {
-			const imageNode = createMovieImage()
-			imageNode.className = "moviesRated--Poster-Element"
-			imageNode.setAttribute("src", input[key].imageURL)
-			moviesRated.appendChild(imageNode)
-		})
+	if (Object.keys(input).length === 0) {
+		const newDiv = document.createElement('div');
+		newDiv.className = 'empty-movie-list';
+		newDiv.innerHTML = "<p>You have not recommended any movies yet. Search for a movie to get started</p>"
+		const newLink = document.createElement('a');
+		newLink.href = "./searchPage.html"
+		const newButton = document.createElement('button');
+		newButton.className = 'empty-movie-list-button'
+		newButton.innerHTML = "Search for a movie"
+		newLink.appendChild(newButton);
+		newDiv.appendChild(newLink);
+		moviesRated.appendChild(newDiv);
+	}
+	else {
+		if (input) {
+			moviesRated.innerHTML = ""
+			Object.keys(input).map(key => {
+				const imageNode = createMovieImage()
+				imageNode.className = "moviesRated--Poster-Element"
+				imageNode.setAttribute("src", input[key].imageURL)
+				moviesRated.appendChild(imageNode)
+			})
+		}
 	}
 }
 const createMovieDiv = () => {

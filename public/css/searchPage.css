@@ -28,7 +28,7 @@ body{
 	width:100%;
 	text-align: center;
 	padding:4% 0 ;
-	background-color:#484158;
+	background-color:rgb(10, 173, 173);
 	overflow:hidden;
 }
 .searchBar--Input > h2{
@@ -54,16 +54,16 @@ body{
 }
 
 ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
-	color: pink;
+	color: white;
   }
   ::-moz-placeholder { /* Firefox 19+ */
-	color: pink;
+	color: white;
   }
   :-ms-input-placeholder { /* IE 10+ */
-	color: pink;
+	color: white;
   }
   :-moz-placeholder { /* Firefox 18- */
-	color: pink;
+	color: white;
   }
 .movieResults{
 	padding-top:4%;
